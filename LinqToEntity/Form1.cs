@@ -99,14 +99,17 @@ namespace LinqToEntity
 
             #region
             //Doğum tarihi 1930 ile 1960 arasında olup da USA'da çalışanları listeleyeceğiz
-            dataGridView1.DataSource = db.Employees.Where(x => SqlFunctions.DatePart("Year", x.BirthDate) >= 1930 && SqlFunctions.DatePart("Year", x.BirthDate) <= 1960 && x.Country == "USA").Select(x => new
-            {
-                x.FirstName,
-                x.LastName,
-                x.Title,
-                x.Country,
-                x.BirthDate
-            }).ToList();
+            dataGridView1.DataSource = db.Employees.Where(x => SqlFunctions.DatePart("Year", x.BirthDate) >= 1930 && 
+                                                               SqlFunctions.DatePart("Year", x.BirthDate) <= 1960 && 
+                                                               x.Country == "USA")
+                                                               .Select(x => new
+                                                                {
+                                                                    x.FirstName,
+                                                                    x.LastName,
+                                                                    x.Title,
+                                                                    x.Country,
+                                                                    x.BirthDate
+                                                                }).ToList();
             #endregion
 
             #region
