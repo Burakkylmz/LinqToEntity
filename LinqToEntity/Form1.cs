@@ -40,61 +40,69 @@ namespace LinqToEntity
 
             #region
             //Çalışan id'si 2 ile 8 arasında olan çalışanları A-Z'ye olacak şekilde isimlerine göre sıralayınız
-            dataGridView1.DataSource = db.Employees.Where(x => x.EmployeeID > 2 && x.EmployeeID <= 8).OrderBy(x => x.FirstName).ToList();
+            dataGridView1.DataSource = db.Employees.Where(x => x.EmployeeID > 2 && x.EmployeeID <= 8)
+                                                   .OrderBy(x => x.FirstName)
+                                                   .ToList();
             #endregion
 
             #region
             //60 yaşından büyük olan çalışanları listeleyin
-            dataGridView1.DataSource = db.Employees.Where(x => SqlFunctions.DateDiff("Year", x.BirthDate, DateTime.Now) > 60).Select(x => new
-            {
-                x.FirstName,
-                x.LastName,
-                x.Title,
-                x.BirthDate
-            }).ToList();
+            dataGridView1.DataSource = db.Employees.Where(x => SqlFunctions.DateDiff("Year", x.BirthDate, DateTime.Now) > 60)
+                                                   .Select(x => new
+                                                   {
+                                                       x.FirstName,
+                                                       x.LastName,
+                                                       x.Title,
+                                                       x.BirthDate
+                                                   }).ToList();
             #endregion
 
             #region
             //1960 yılında doğan çalışanları listeleyin
-            dataGridView1.DataSource = db.Employees.Where(x => SqlFunctions.DatePart("Year", x.BirthDate) == 1960).Select(x => new
-            {
-                x.FirstName,
-                x.LastName,
-                x.Title,
-                x.BirthDate
-            }).ToList();
+            dataGridView1.DataSource = db.Employees.Where(x => SqlFunctions.DatePart("Year", x.BirthDate) == 1960)
+                                                   .Select(x => new
+                                                   {
+                                                       x.FirstName,
+                                                       x.LastName,
+                                                       x.Title,
+                                                       x.BirthDate
+                                                   }).ToList();
             #endregion
 
             #region,
             //1950 ve 1961 aralığında doğmuş çalışanların ismi ve soyismi doğum tarihleriyle listelenyin
-            dataGridView1.DataSource = db.Employees.Where(x => SqlFunctions.DatePart("Year", x.BirthDate) >= 1950 && SqlFunctions.DatePart("Year", x.BirthDate) <= 1961).Select(x => new
-            {
-                x.FirstName,
-                x.LastName,
-                x.BirthDate
-            }).ToList();
+            dataGridView1.DataSource = db.Employees.Where(x => SqlFunctions.DatePart("Year", x.BirthDate) >= 1950 && 
+                                                               SqlFunctions.DatePart("Year", x.BirthDate) <= 1961)
+                                                   .Select(x => new
+                                                   {
+                                                       x.FirstName,
+                                                       x.LastName,
+                                                       x.BirthDate
+                                                   }).ToList();
             #endregion
 
             #region
             //Ünvanı Mr. olan ve yaşı 60'tan büyük olan çalışanları listeleyin
-            dataGridView1.DataSource = db.Employees.Where(x => x.TitleOfCourtesy == "Mr." && SqlFunctions.DateDiff("Year", x.BirthDate, DateTime.Now) > 60).Select(x => new
-            {
-                x.FirstName,
-                x.LastName,
-                x.Title,
-                x.BirthDate
-            }).ToList();
+            dataGridView1.DataSource = db.Employees.Where(x => x.TitleOfCourtesy == "Mr." && SqlFunctions.DateDiff("Year", x.BirthDate, DateTime.Now) > 60)
+                                                   .Select(x => new
+                                                   {
+                                                       x.FirstName,
+                                                       x.LastName,
+                                                       x.Title,
+                                                       x.BirthDate
+                                                   }).ToList();
             #endregion
 
             #region
             //Çalışanların firstname, lastname, titleofcourtesy ve age ekrana getirilsin. yaşa göre azalan şekilde sıralansın
-            dataGridView1.DataSource = db.Employees.OrderBy(x => SqlFunctions.DateDiff("Year", x.BirthDate, DateTime.Now)).Select(x => new
-            {
-                x.FirstName,
-                x.LastName,
-                x.Title,
-                Yas = SqlFunctions.DateDiff("Year", x.BirthDate, DateTime.Now)
-            }).ToList();
+            dataGridView1.DataSource = db.Employees.OrderBy(x => SqlFunctions.DateDiff("Year", x.BirthDate, DateTime.Now))
+                                                   .Select(x => new
+                                                   {
+                                                       x.FirstName,
+                                                       x.LastName,
+                                                       x.Title,
+                                                       Yas = SqlFunctions.DateDiff("Year", x.BirthDate, DateTime.Now)
+                                                   }).ToList();
             #endregion
 
             #region
@@ -102,14 +110,14 @@ namespace LinqToEntity
             dataGridView1.DataSource = db.Employees.Where(x => SqlFunctions.DatePart("Year", x.BirthDate) >= 1930 && 
                                                                SqlFunctions.DatePart("Year", x.BirthDate) <= 1960 && 
                                                                x.Country == "USA")
-                                                               .Select(x => new
-                                                                {
-                                                                    x.FirstName,
-                                                                    x.LastName,
-                                                                    x.Title,
-                                                                    x.Country,
-                                                                    x.BirthDate
-                                                                }).ToList();
+                                                  .Select(x => new
+                                                   {
+                                                       x.FirstName,
+                                                       x.LastName,
+                                                       x.Title,
+                                                       x.Country,
+                                                       x.BirthDate
+                                                   }).ToList();
             #endregion
 
             #region
@@ -124,11 +132,13 @@ namespace LinqToEntity
 
             #region
             //Ürünlerin  birim fiyatları 18,19 veya 25 olanları listeleyin
-            dataGridView1.DataSource = db.Products.Where(x => x.UnitPrice == 18 || x.UnitPrice == 19 || x.UnitPrice == 25).OrderByDescending(x => x.UnitPrice).Select(x => new
-            {
-                x.ProductName,
-                x.UnitPrice
-            }).ToList();
+            dataGridView1.DataSource = db.Products.Where(x => x.UnitPrice == 18 || x.UnitPrice == 19 || x.UnitPrice == 25)
+                                                  .OrderByDescending(x => x.UnitPrice)
+                                                  .Select(x => new
+                                                  {
+                                                      x.ProductName,
+                                                      x.UnitPrice
+                                                  }).ToList();
             #endregion
 
             #region
@@ -175,11 +185,13 @@ namespace LinqToEntity
 
             #region
             //Kategorilerine göre toplam stok miktarını lsiteleyiniz
-            dataGridView1.DataSource = db.Categories.Join(db.Products, p => p.CategoryID, c => c.CategoryID, (p, c) => new { p, c }).GroupBy(x => x.p.CategoryName).Select(y => new
-            {
-                Name = y.Key,
-                Count = y.Sum(p => p.c.UnitsInStock)
-            }).ToList();
+            dataGridView1.DataSource = db.Categories.Join(db.Products, p => p.CategoryID, c => c.CategoryID, (p, c) => new { p, c })
+                                                    .GroupBy(x => x.p.CategoryName)
+                                                    .Select(y => new
+                                                    {
+                                                        Name = y.Key,
+                                                        Count = y.Sum(p => p.c.UnitsInStock)
+                                                    }).ToList();
             #endregion
 
             #region
