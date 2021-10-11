@@ -206,7 +206,6 @@ namespace LinqToEntity
                 }).ToList();
             #endregion
 
-
             #region
             //Ürün kategorilerine göre satışların ne kadar olduğunu listeleyin
             dataGridView1.DataSource = db.Categories
